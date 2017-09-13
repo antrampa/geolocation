@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>title</title>
+        <script type="text/javascript">
+            var successCallback = function(data) {
+                console.log('latitude: ' + data.coords.latitude + ' longitude: ' + data.coords.longitude);
+				document.getElementById('location').innerHTML = 'latitude: <b>' + data.coords.latitude + '</b> longitude: <b>' + data.coords.longitude + '</b>';
+            };
+
+            var failureCallback = function() {
+                console.log('location failure :(');
+            };
+
+            var logLocation = function() {
+
+                //determine if the handset has client side geo location capabilities
+                if(navigator.geolocation){
+                   navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+                }
+                else{
+                   alert("Functionality not available");
+                }
+            };
+
+            logLocation();
+            setTimeout(logLocation, 5000);
+        </script>
+    </head>
+    <body>
+        <p>Testing</p>
+		<p>Your location is:</p>
+		<div id="location"></div>
+    <body>
+</html>
